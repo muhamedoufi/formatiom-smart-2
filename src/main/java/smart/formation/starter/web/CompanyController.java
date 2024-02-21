@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import smart.formation.starter.entity.Company;
 import smart.formation.starter.service.CompanyService;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/companies")
 public class CompanyController {
 
     @Autowired
@@ -22,14 +23,12 @@ public class CompanyController {
     
     @PostMapping("/create")
     public ResponseEntity<Object> createCompany(@RequestBody Company company){
-        try {
-            service.createCompany(company);
+            return service.createCompany(company);
 
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
+            // return ResponseEntity.ok().build();
 
-            return ResponseEntity.internalServerError().build();
-        }
+            // return ResponseEntity.internalServerError().build();
+        
 
     }
 
@@ -45,5 +44,12 @@ public class CompanyController {
             return ResponseEntity.internalServerError().build();
         }
 
+    }
+
+
+    @GetMapping
+    public ResponseEntity<Object> getCompanies(){
+        var companies = service.getCompanies();
+        return ResponseEntity.ok().body(companies);
     }
 }

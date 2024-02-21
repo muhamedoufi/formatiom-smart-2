@@ -6,5 +6,7 @@ import smart.formation.starter.entity.Company;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long>{
+
+    
     
 }
